@@ -19,7 +19,7 @@
 <ul>
     <li>글쓴이</li>
     <li>
-        <input type="text" class="notice_input2" id="writer" readonly> ※ 관리자 이름이 노출 됩니다.       
+        <input type="text" class="notice_input2" id="writer" readonly value="<%=aname%>"> ※ 관리자 이름이 노출 됩니다.       
     </li>
 </ul>
 <ul>

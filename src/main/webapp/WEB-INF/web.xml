@@ -20,6 +20,7 @@
 	<url-pattern>/add_master_ok.do</url-pattern>	
 	</servlet-mapping>
 	
+	
 	<servlet>
 	<servlet-name>notice_writeok</servlet-name>
 	<servlet-class>admin.notice_writeok</servlet-class>
