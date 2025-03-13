@@ -83,6 +83,8 @@ public class notice_writeok extends HttpServlet {
                 ps.setString(4, writer);
                 ps.setString(5, fileName);
                 ps.setString(6, ntext);
+                
+                
             }
 
             result = ps.executeUpdate();
