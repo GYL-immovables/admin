@@ -27,7 +27,9 @@
     <!-- 관리자 등록 -->
     <!-- 카피라이터 및 하단 -->
     <footer class="admin_copy">
-        <%@include file="./footer.jsp" %>
+        <div>
+            Copyright ⓒ 2024 shopbag All rights reserved.
+        </div>
     </footer>
     <!-- 카피라이터 및 하단 -->
 </body>
