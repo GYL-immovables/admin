@@ -11,12 +11,9 @@ public class m_dbinfo {
       String db_pass = "c2025chang"; //Database접속 password
       Connection con = null;
       try {
-    	  
-    	  
-    	 
          Class.forName(db); //라이브러리 사용
          con = DriverManager.getConnection(db_url, db_user, db_pass);   
-         System.out.println(con);
+//         System.out.println(con);
       } catch (Exception e) {
          System.out.println("Database 연결 실패!!");
       }

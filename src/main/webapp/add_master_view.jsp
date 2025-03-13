@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="./add_master_view.js?v=2"></script>
+<script src="./add_master_view.js?v=3"></script>
 <div class="admin_login_add">
 	<form id="frm" method="post" action="./add_master_ok.do">
 <!-- 전화번호 / 아이디중복체크여부("", "ok") -->
-		<input type="hidden" name="atel">	
+		<input type="hidden" name="atel" value="">	
 		<input type="hidden" id="idck" value="">
 
 		<ul>

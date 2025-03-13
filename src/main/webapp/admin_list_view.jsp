@@ -1,5 +1,11 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+//최근가입순 관리자 리스트
+//0아이디 1이름 2이메일 3전화번호 4부서 5직책 6가입승인 7가입날짜
+ArrayList<ArrayList<String>> alladmin = (ArrayList<ArrayList<String>>)request.getAttribute("alladmin");
+%>
 <section>
     <p>신규등록 관리자</p>
     <ol class="new_admin_title2">
@@ -13,23 +19,67 @@
         <li>가입일자</li>
         <li>승인여부</li>
     </ol>
+<%
+int i = 0;
+int no = alladmin.size();
+if(alladmin.size() == 0){	//관리자 없을때 
+%>
     <ol class="new_admin_none">
         <li>신규 등록된 관리자가 없습니다.</li>
     </ol>
+<%
+		
+}
+else{	//관리자 있을때
+	%>
+        <form id="aprv_frm" method="get" action="./updateaprv.do">
+	
+	<%
+	
+//0아이디 1이름 2이메일 3전화번호 4부서 5직책 6가입승인 7가입날짜
+	while(i < alladmin.size()){
+%>
     <ol class="new_admin_lists2">
-        <li>1</li>
-        <li>한석봉</li>
-        <li>hansbong</li>
-        <li>01012345678</li>
-        <li>hansbong@hanmail.net</li>
-        <li>디자인팀</li>
-        <li>주임</li>
-        <li>2025-02-28</li>
+        <li><%= no %></li>
+        <li><%= alladmin.get(i).get(1) %></li>
+        <li><%= alladmin.get(i).get(0) %></li>
+        <li><%= alladmin.get(i).get(3) %></li>
+        <li><%= alladmin.get(i).get(2) %></li>
+        <li><%= alladmin.get(i).get(4) %></li>
+        <li><%= alladmin.get(i).get(5) %></li>
+        <li><%= alladmin.get(i).get(7).substring(0,10)%></li>
         <li>
-            <input type="button" value="승인" class="new_addbtn1" title="승인">
-            <input type="button" value="미승인" class="new_addbtn2" title="미승인">
+        <!-- select 쿼리문에 사용할 관리자아이디와 가입여부를 무엇으로 변경할지 hidden에 담아 보냄 -->
+        	<input type="hidden" name="aid" value="<%= alladmin.get(i).get(0) %>">
+        	<input type="hidden" name="aprv_to" value="">
+        	<%
+        	if(alladmin.get(i).get(6).equals("Y")){
+        		%>
+            <input type="button" value="미승인" class="new_addbtn2" title="미승인" onclick="aprv_btn('N')">
+        		<%
+        	}else{
+        		%>
+            <input type="button" value="승인" class="new_addbtn1" title="승인" onclick="aprv_btn('Y')">
+        		<%
+        	}
+        	%>
+        </form>
         </li>
-    </ol>
+    </ol>	
+<%
+		
+	no--;
+	i++;
+	}
+}
+%>
+    
 </section>
 <section></section>
 <section></section>
+<script>
+function aprv_btn(e){
+	aprv_frm.aprv_to.value = e;
+	aprv_frm.submit();
+}
+</script>

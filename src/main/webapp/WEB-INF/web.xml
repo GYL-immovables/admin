@@ -47,5 +47,41 @@
 	<servlet-name>findok_id</servlet-name>
 	<url-pattern>/findok_id.do</url-pattern>	
 	</servlet-mapping>
+	
+	<servlet>
+	<servlet-name>findok_pw</servlet-name>
+	<servlet-class>admin.findok_pw</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>findok_pw</servlet-name>
+	<url-pattern>/findok_pw.do</url-pattern>	
+	</servlet-mapping>
+	
+	<servlet>
+	<servlet-name>updatepw</servlet-name>
+	<servlet-class>admin.updatepw</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>updatepw</servlet-name>
+	<url-pattern>/updatepw.do</url-pattern>	
+	</servlet-mapping>
+
+	<servlet>
+	<servlet-name>admin_list</servlet-name>
+	<servlet-class>admin.admin_list</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>admin_list</servlet-name>
+	<url-pattern>/admin_list.do</url-pattern>	
+	</servlet-mapping>
+	
+	<servlet>
+	<servlet-name>updateaprv</servlet-name>
+	<servlet-class>admin.updateaprv</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>updateaprv</servlet-name>
+	<url-pattern>/updateaprv.do</url-pattern>	
+	</servlet-mapping>
   
 </web-app>

@@ -31,19 +31,30 @@ public class index_ok extends HttpServlet {
 						+ "</script>");
 			}else{	//조회된 내용이 있을 경우 
 				System.out.println("인덱스ㅇㅋ : " + this.admindata);
-					this.session = request.getSession();	//세션 생성 
-					this.session.setAttribute("aid",this.admindata.get(0));
-					this.session.setAttribute("aname",this.admindata.get(1));
-					this.session.setAttribute("aemail",this.admindata.get(2));
-					this.session.setAttribute("atel",this.admindata.get(3));
-					this.session.setAttribute("dept",this.admindata.get(4));
-					this.session.setAttribute("rspofc",this.admindata.get(5));
-					this.session.setAttribute("adate",this.admindata.get(6));
+					String aprv = this.admindata.get(5);
 							
-					this.pw.write("<script>"
-							+ "alert('로그인하셨습니다.');"
-							+ "location.href='./admin_list.jsp';"
-							+ "</script>");
+					if(aprv.equals("Y")) {	//가입 승인된 경우 	
+						this.session = request.getSession();	//세션 생성 
+						this.session.setAttribute("aid",this.admindata.get(0));
+						this.session.setAttribute("aname",this.admindata.get(1));
+						this.session.setAttribute("aemail",this.admindata.get(2));
+						this.session.setAttribute("atel",this.admindata.get(3));
+						this.session.setAttribute("dept",this.admindata.get(4));
+						this.session.setAttribute("aprv", aprv);
+						this.session.setAttribute("rspofc",this.admindata.get(6));
+						this.session.setAttribute("adate",this.admindata.get(7));
+						
+						this.pw.write("<script>"
+								+ "alert('로그인하셨습니다.');"
+								+ "location.href='./admin_list.do';"
+								+ "</script>");
+					}else {	//가입승인 안된 경우 
+						this.pw.write("<script>"
+								+ "alert('가입승인이 되지않았습니다.');"
+								+ "location.href='./index.jsp';"
+								+ "</script>");
+					}
+					
 				}
 		}catch (Exception e) {
 			this.pw.write("<script>"

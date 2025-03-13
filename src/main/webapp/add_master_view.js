@@ -41,9 +41,9 @@ function add_master_btn() {
 	}
 }
 
-//취소 => 어디로가나
+//취소 => 로그인화면으로
 function cancel_master_btn() {
-
+	location.href="./index.jsp";
 }
 
 
