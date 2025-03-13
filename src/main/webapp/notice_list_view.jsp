@@ -25,7 +25,7 @@
     </ol>
     </div>
     <div class="board_btn">
-        <button class="border_del">공지삭제</button>
+        <button class="border_del" onclick="notice_info()">공지삭제</button>
         <button class="border_add">공지등록</button>
     </div>
     <div class="border_page">

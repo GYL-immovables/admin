@@ -15,6 +15,7 @@
     <link rel="icon" href="./img/logo.png" sizes="64x64">
     <link rel="icon" href="./img/logo.png" sizes="32x32">
     <link rel="icon" href="./img/logo.png" sizes="16x16">
+    <script src="notice_write.js?v=1"></script>
 </head>
 <body>
 	<!-- 상단 로고 & 메뉴 -->

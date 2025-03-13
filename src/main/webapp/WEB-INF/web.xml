@@ -19,6 +19,16 @@
 	<servlet-name>add_master_ok</servlet-name>
 	<url-pattern>/add_master_ok.do</url-pattern>	
 	</servlet-mapping>
+	
+	<servlet>
+	<servlet-name>notice_writeok</servlet-name>
+	<servlet-class>admin.notice_writeok</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>notice_writeok</servlet-name>
+	<url-pattern>/notice_writeok.do</url-pattern>	
+	</servlet-mapping>
+	
   
   
   
