@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="./add_master_view.js?v=1"></script>
+<script src="./add_master_view.js?v=2"></script>
 <div class="admin_login_add">
 	<form id="frm" method="post" action="./add_master_ok.do">
-
-		<input type="hidden" name="atel">
-
+<!-- 전화번호 / 아이디중복체크여부("", "ok") -->
+		<input type="hidden" name="atel">	
+		<input type="hidden" id="idck" value="">
 
 		<ul>
 			<li class="font_color1">아이디 및 패스워드 정보</li>
@@ -13,8 +13,8 @@
 				placeholder="생성할 관리자 아이디를 입력하세요">
 				<button type="button" class="btn_button" onclick="id_btn()">중복체크</button>
 			</li>
-			<li><input type="text" name="apw" class="add_input1"
-				placeholder="접속할 패스워드를 입력하세요"> <input type="text"
+			<li><input type="password" name="apw" class="add_input1"
+				placeholder="접속할 패스워드를 입력하세요"> <input type="password"
 				name="apw2" class="add_input1" placeholder="동일한 패스워드를 입력하세요">
 			</li>
 			<li class="font_color1">관리자 기본정보 입력</li>
