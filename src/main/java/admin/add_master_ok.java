@@ -41,7 +41,7 @@ public class add_master_ok extends HttpServlet {
 			if(result > 0) {
 		         this.pw.write("<script>"
 		               + "alert('관리자 등록 신청이 완료되었습니다.');"
-		               + "history.go(-1);"
+		               + "location.href='./index.jsp';" 
 		               + "</script>");
 		      }else {
 		         this.pw.write("<script>"

@@ -28,5 +28,14 @@
 	<servlet-name>index_ok</servlet-name>
 	<url-pattern>/index_ok.do</url-pattern>	
 	</servlet-mapping>
+	
+	<servlet>
+	<servlet-name>findok_id</servlet-name>
+	<servlet-class>admin.findok_id</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>findok_id</servlet-name>
+	<url-pattern>/findok_id.do</url-pattern>	
+	</servlet-mapping>
   
 </web-app>

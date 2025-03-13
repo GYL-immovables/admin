@@ -22,7 +22,9 @@
 		</span> <span>
 			<ol class="admin_info">
 				<li title="신규 관리자 등록요청">신규 관리자 등록요청</li>
-				<li title="아이디/패스워드 찾기">아이디/패스워드 찾기</li>
+			
+				<li title="아이디/패스워드 찾기"><a href="./find_id.html">아이디/패스워드 찾기</a></li>
+			
 			</ol>
 			</form>
 		</span>

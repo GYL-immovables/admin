@@ -9,7 +9,7 @@ public class m_selectid {
 	m_dbinfo db = new m_dbinfo();
 	PreparedStatement ps = null;
 	ResultSet rs = null;
-	String id = null;
+	String aid = null;
 	String sql = "";
 	
 	public String idok(String aname, String atel, String aemail) {
@@ -24,8 +24,9 @@ public class m_selectid {
 			this.rs = this.ps.executeQuery();
 			
 			if (this.rs.next()) {  //next() 호출 후 데이터 읽기
-				this.id = this.rs.getString("sid");
+				this.aid = this.rs.getString("aid");
 			} 
+			System.out.println("medel : "+this.aid);
 		} catch (Exception e) {
 			System.out.println("db select error");
 
@@ -38,6 +39,6 @@ public class m_selectid {
 				System.out.println("db close error");
 			}
 		}
-		return this.id;
+		return this.aid;
 	}
 }

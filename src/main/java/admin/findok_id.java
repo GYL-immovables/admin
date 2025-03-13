@@ -25,13 +25,15 @@ public class findok_id extends HttpServlet {
 			String aemail = request.getParameter("aemail");
 			String aid = this.si.idok(aname,atel,aemail);
 			
+			System.out.println(aid);
+			
 			if (aid == null) {
 			    this.pw.write("<script>" 
 			            + "alert('해당되는 아이디가 없습니다.');" 
 			            + "history.go(-1);" 
 			            + "</script>");
 			}else {
-				request.setAttribute("aid", aid);
+				
 				RequestDispatcher rd = request.getRequestDispatcher("./findok_id.jsp");
 				rd.forward(request, response);
 			}
