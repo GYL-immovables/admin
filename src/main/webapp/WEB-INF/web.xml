@@ -20,6 +20,13 @@
 	<url-pattern>/add_master_ok.do</url-pattern>	
 	</servlet-mapping>
   
-  
+	<servlet>
+	<servlet-name>index_ok</servlet-name>
+	<servlet-class>admin.index_ok</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>index_ok</servlet-name>
+	<url-pattern>/index_ok.do</url-pattern>	
+	</servlet-mapping>
   
 </web-app>
