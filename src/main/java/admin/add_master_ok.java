@@ -22,8 +22,6 @@ public class add_master_ok extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		this.pw = response.getWriter();
 		m_dbinfo db = new m_dbinfo();
-
-		
 		
 		try {
 			// 패스워드 암호화
