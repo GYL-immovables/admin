@@ -38,7 +38,7 @@
 					<option value="MD팀">MD팀</option>
 			</select> <select name="rspofc" class="add_select1">
 					<option value="">담당자 직책을 선택하세요</option>
-					<option value="대표">대표</option>
+					<option value="대표">대표</option> 
 					<option value="부장">부장</option>
 					<option value="팀장">팀장</option>
 					<option value="과장">과장</option>
