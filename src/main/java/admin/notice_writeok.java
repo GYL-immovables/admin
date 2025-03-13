@@ -32,6 +32,8 @@ public class notice_writeok extends HttpServlet {
         PreparedStatement ps = null;
         m_dbinfo db = new m_dbinfo(); // DB 접속 정보
 
+     
+        
         
         
         // 🔹 텍스트 데이터 받기

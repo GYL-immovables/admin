@@ -23,6 +23,8 @@ public class add_master_ok extends HttpServlet {
 		this.pw = response.getWriter();
 		m_dbinfo db = new m_dbinfo();
 
+		
+		
 		try {
 			// 패스워드 암호화
 			String password = new m_md5().md5_code(request.getParameter("apw"));
