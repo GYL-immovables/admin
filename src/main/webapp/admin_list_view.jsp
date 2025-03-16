@@ -33,7 +33,8 @@ if(alladmin.size() == 0){	//관리자 없을때
 else{	//관리자 있을때
 	%>
         <form id="aprv_frm" method="get" action="./updateaprv.do">
-	
+    	<input type="hidden" name="aid" value="">
+        <input type="hidden" name="aprv_to" value="">	
 	<%
 	
 //0아이디 1이름 2이메일 3전화번호 4부서 5직책 6가입승인 7가입날짜
@@ -50,16 +51,15 @@ else{	//관리자 있을때
         <li><%= alladmin.get(i).get(7).substring(0,10)%></li>
         <li>
         <!-- select 쿼리문에 사용할 관리자아이디와 가입여부를 무엇으로 변경할지 hidden에 담아 보냄 -->
-        	<input type="hidden" name="aid" value="<%= alladmin.get(i).get(0) %>">
-        	<input type="hidden" name="aprv_to" value="">
+    
         	<%
         	if(alladmin.get(i).get(6).equals("Y")){
         		%>
-            <input type="button" value="미승인" class="new_addbtn2" title="미승인" onclick="aprv_btn('N')">
+            <input type="button" value="미승인" class="new_addbtn2" title="미승인" onclick="aprv_btn('<%= alladmin.get(i).get(0) %>','N')">
         		<%
         	}else{
         		%>
-            <input type="button" value="승인" class="new_addbtn1" title="승인" onclick="aprv_btn('Y')">
+            <input type="button" value="승인" class="new_addbtn1" title="승인" onclick="aprv_btn('<%= alladmin.get(i).get(0) %>','Y')">
         		<%
         	}
         	%>
@@ -78,7 +78,8 @@ else{	//관리자 있을때
 <section></section>
 <section></section>
 <script>
-function aprv_btn(e){
+function aprv_btn(id,e){
+	aprv_frm.aid.value = id;
 	aprv_frm.aprv_to.value = e;
 	aprv_frm.submit();
 }
