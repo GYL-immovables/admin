@@ -21,7 +21,7 @@
     <%@include file="./index_view.jsp" %>
     <footer class="admin_copy_login">
         <div>
-            Copyright ⓒ 2024 shopbag All rights reserved.
+           <%--  <%@include file="./index_footer.jsp" %> --%>
         </div>
     </footer>
 </body>
