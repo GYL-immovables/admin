@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="./add_master_view.js?v=3"></script>
+<script src="./add_master_view.js?v=5"></script>
 <div class="admin_login_add">
 	<form id="frm" method="post" action="./add_master_ok.do">
-<!-- 전화번호 / 아이디중복체크여부("", "ok") -->
+<!-- 전화번호 / 아이디중복체크여부("", "ok") / 정보수정이면 Y 등록이면 N -->
 		<input type="hidden" name="atel" value="">	
 		<input type="hidden" id="idck" value="">
-		<input type="hidden" id="isupdate" value="N">
+		<input type="hidden" name="isupdate" value="N">
 
 		<ul>
 			<li class="font_color1">아이디 및 패스워드 정보</li>
@@ -45,14 +45,14 @@
 				name="atel3" class="add_input1 hp2" placeholder="5678" maxlength="4">
 			</li>
 			<li class="font_color1">관리자 담당부서 및 직책</li>
-			<li><select name="dept" class="add_select1" value="<%=dept%>">
+			<li><select name="dept" class="add_select1">
 					<option value="">담당자 부서를 선택하세요</option>
 					<option value="임원">임원</option>
 					<option value="전산팀">전산팀</option>
 					<option value="디자인팀">디자인팀</option>
 					<option value="CS팀">CS팀</option>
 					<option value="MD팀">MD팀</option>
-			</select> <select name="rspofc" class="add_select1" value="<%=rspofc%>">
+			</select> <select name="rspofc" class="add_select1">
 					<option value="">담당자 직책을 선택하세요</option>
 					<option value="대표">대표</option> 
 					<option value="부장">부장</option>
@@ -61,13 +61,28 @@
 					<option value="대리">대리</option>
 					<option value="사원">사원</option>
 			</select></li>
+			<%
+			if(aid.equals(null)){
+				%>
 			<li class="font_color1">※ 가입완료 후 전산 담당자가 확인 후 로그인 할 수 있습니다.</li>
+			<% } %>
 		</ul>
+		<%
+		if(aid.equals(null)){
+		%>
 		<span class="admin_addbtn">
 			<button type="button" class="btn_button btncolor1" title="관리자 등록"
 				onclick="add_master_btn()">관리자 등록</button>
 			<button type="button" class="btn_button btncolor2" title="관리자 취소"
 				onclick="cancel_master_btn()">등록 취소</button>
 		</span>
+		<%}else{ %>
+		<span class="admin_addbtn">
+			<button type="button" class="btn_button btncolor1" title="수정 완료"
+				onclick="update_master_btn()">수정 완료</button>
+			<button type="button" class="btn_button btncolor2" title="수정 취소"
+				onclick="update_cancel_master_btn()">수정 취소</button>
+		</span>
+		<%} %>
 	</form>
 </div>

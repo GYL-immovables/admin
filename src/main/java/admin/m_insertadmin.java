@@ -12,8 +12,6 @@ public class m_insertadmin {
 	String sql = "";
 	
 	public Integer insertadmin(ArrayList<String> admin) {
-		System.out.println(admin);
-		
 		try {
 			this.con = this.db.dbinfo();
 			
@@ -29,7 +27,6 @@ public class m_insertadmin {
 			this.ps.setString(7,admin.get(6));
 			
 			this.result = this.ps.executeUpdate();
-			
 			
 		}catch (Exception e) {
 			System.out.println("insert admin error");

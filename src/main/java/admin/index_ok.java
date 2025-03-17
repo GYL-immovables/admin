@@ -44,7 +44,7 @@ private static final long serialVersionUID = 1L;
 							
 					this.pw.write("<script>"
 							+ "alert('로그인하셨습니다.');"
-							+ "location.href='./admin_list.jsp';"
+							+ "location.href='./admin_list.do';"
 							+ "</script>");
 				}
 		}catch (Exception e) {

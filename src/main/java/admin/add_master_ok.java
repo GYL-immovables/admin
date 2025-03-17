@@ -22,7 +22,6 @@ public class add_master_ok extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		this.pw = response.getWriter();
 		m_dbinfo db = new m_dbinfo();
-		System.out.println("Test");
 		
 		try {
 			// 패스워드 암호화
@@ -36,21 +35,38 @@ public class add_master_ok extends HttpServlet {
 			this.admindata.add(request.getParameter("atel"));
 			this.admindata.add(request.getParameter("dept"));
 			this.admindata.add(request.getParameter("rspofc"));
-
-			m_insertadmin ia = new m_insertadmin();
-			Integer result = ia.insertadmin(admindata);
-			if(result > 0) {
-		         this.pw.write("<script>"
-		               + "alert('관리자 등록 신청이 완료되었습니다.');"
-		               + "location.href='./index.jsp';" 
-		               + "</script>");
-		      }else {
-		         this.pw.write("<script>"
-		               + "alert('서비스 장애 발생');"
-		               + "history.go(-1);"
-		               + "</script>");
-		      }
-
+			
+			String isupdate = request.getParameter("isupdate");
+			Integer result = null;
+			if(isupdate.equals("N")) {	//관리자 추가일때 
+				m_insertadmin ia = new m_insertadmin();
+				result = ia.insertadmin(admindata);
+				if(result > 0) {
+			         this.pw.write("<script>"
+			               + "alert('관리자 등록 신청이 완료되었습니다.');"
+			               + "location.href='./index.jsp';" 
+			               + "</script>");
+			      }else {
+			         this.pw.write("<script>"
+			               + "alert('서비스 장애 발생');"
+			               + "history.go(-1);"
+			               + "</script>");
+			      }
+			}else {	//관리자 정보 수정일때 
+				m_updatepw up = new m_updatepw();
+				result = up.adminok(admindata);
+				if(result > 0) {
+			         this.pw.write("<script>"
+			               + "alert('관리자 정보 변경이 완료되었습니다.');"
+			               + "location.href='./admin_list.do';" 
+			               + "</script>");
+			      }else {
+			         this.pw.write("<script>"
+			               + "alert('서비스 장애 발생');"
+			               + "history.go(-1);"
+			               + "</script>");
+			      }
+			}
 		} catch (Exception e) {
 			this.pw.write("<script>"
 		               + "alert('올바르지 않은 접근입니다.');"
