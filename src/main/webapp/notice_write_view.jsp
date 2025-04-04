@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <main class="maincss">
+<script src="./notice_write.js"></script>
 <section>
     <p>공지사항 등록페이지</p>
     <form id="frm" method="post" action="./notice_writeok.do" enctype="multipart/form-data">
@@ -46,7 +47,7 @@
         </div>
         <div class="board_btn">
             <button type="button" class="border_del">공지목록</button>
-            <button type="submit" class="border_add">공지등록</button>
+            <button type="button" class="border_add" onclick="file_send()">공지등록</button>
         </div>
     </form>
 </section>
