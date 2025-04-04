@@ -40,7 +40,10 @@ public class notice_writeok extends HttpServlet {
 		try {
 			this.con = this.db.dbinfo(); // DB 연결
 
-			String ncheck = request.getParameter("ncheck");     // 공지 체크 여부
+			String ncheck = request.getParameter("ncheck");
+			if (ncheck == null) {
+			    ncheck = "N"; // 기본값으로 '공지 아님'
+			}
 			String nsubject = request.getParameter("nsubject"); // 제목
 			String writer = request.getParameter("writer");     // 작성자
 			String ntext = request.getParameter("ntext");       // 내용
@@ -63,7 +66,7 @@ public class notice_writeok extends HttpServlet {
 				if (result > 0) {
 					this.pw.write("<script>"
 						+ "alert('게시물이 올바르게 등록되었습니다.');"
-						+ "location.href = './notice_list.jsp';"
+						+ "location.href = './notice_list.do';"
 						+ "</script>");
 				}
 			} else { // 첨부파일 있는 경우
@@ -73,7 +76,7 @@ public class notice_writeok extends HttpServlet {
 				if(msg.equals("ok")) {
 					this.pw.write("<script>"
 							+ "alert('올바르게 공지사항이 등록되었습니다.');"
-							+ "location.href = './notice_list.jsp';"
+							+ "location.href = './notice_list.do';"
 							+ "</script>");
 				}else {
 					this.pw.write("<script>"
@@ -83,6 +86,7 @@ public class notice_writeok extends HttpServlet {
 				}
 			}
 		} catch (Exception e) {
+			System.out.println(e);
 			this.pw.write("<script>"
 				+ "alert('데이터베이스 문제로 인하여 저장되지 않았습니다.');"
 				+ "history.go(-1);"

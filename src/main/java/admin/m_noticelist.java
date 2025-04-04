@@ -52,7 +52,7 @@ public class m_noticelist {
 				this.data.add(this.rs.getString("total"));	//게시물 전체 갯수 저장한 값 
 				this.alldata.add(this.data);
 			}
-			System.out.println(this.alldata);
+			//System.out.println(this.alldata);
 		}catch (Exception e) {
 			this.alldata = null;
 		}finally {

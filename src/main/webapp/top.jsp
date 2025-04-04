@@ -22,7 +22,7 @@ String adate = (String)hs.getAttribute("adate");
             <li title="쇼핑몰 관리자 리스트"><a>쇼핑몰 관리자 리스트</a></li>
            <li title="쇼핑몰 상품관리"><a>쇼핑몰 상품관리</a></li>
             <li title="쇼핑몰 기본설정"><a>쇼핑몰 기본설정</a></li>
-            <li title="쇼핑몰 공지사항"><a href='./notice_list.jsp'>쇼핑몰 공지사항</a></li>
+            <li title="쇼핑몰 공지사항"><a href='./notice_list.do'>쇼핑몰 공지사항</a></li>
         </ol>
     </div>
 </nav>
