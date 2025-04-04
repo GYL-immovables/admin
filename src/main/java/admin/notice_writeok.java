@@ -13,105 +13,80 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 @MultipartConfig(
-    fileSizeThreshold = 1024 * 1024 * 5,
-    maxFileSize = 1024 * 1024 * 50,
-    maxRequestSize = 1024 * 1024 * 100
+	fileSizeThreshold = 1024 * 1024 * 5,   // 파일 하나 5MB
+	maxFileSize = 1024 * 1024 * 50,        // 파일들의 총 용량 50MB
+	maxRequestSize = 1024 * 1024 * 500     // 파일 여러개일 때 총 용량 제한
 )
 public class notice_writeok extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+	Connection con = null;
+	PreparedStatement ps = null;
+	PrintWriter pw = null;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=UTF-8");
+	// Model
+	m_dbinfo db = new m_dbinfo(); // DB 접속 정보
 
-        PrintWriter pw = response.getWriter();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-        m_dbinfo db = new m_dbinfo();
-        Connection con = null;
-        PreparedStatement ps = null;
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		this.pw = response.getWriter();
 
-        try {
-            con = db.dbinfo(); // DB 연결
+		// 첨부파일 유무에 따라 SQL 방식 결정
+		Part nfile = request.getPart("nfile");
+		long filesize = nfile.getSize(); // getSize()는 long값 return
 
-            // 🔹 폼 데이터 받기
-            String ncheck = request.getParameter("ncheck");  // 공지 여부
-            String nsubject = request.getParameter("nsubject");  // 제목
-            String writer = request.getParameter("writer");  // 작성자
-            String ntext = request.getParameter("ntext");  // 내용
+		try {
+			this.con = this.db.dbinfo(); // DB 연결
 
-            // 체크박스 값이 없으면 기본값 'N' 설정
-            if (ncheck == null || ncheck.trim().isEmpty()) {
-                ncheck = "N";
-            }
+			String ncheck = request.getParameter("ncheck");     // 공지 체크 여부
+			String nsubject = request.getParameter("nsubject"); // 제목
+			String writer = request.getParameter("writer");     // 작성자
+			String ntext = request.getParameter("ntext");       // 내용
 
-            // 작성자가 없으면 "관리자" 기본값 설정
-            if (writer == null || writer.trim().isEmpty()) {
-                writer = "관리자";
-            }
+			String sql = "";     // SQL 문
+			int result = 0;      // insert 결과
 
-            // 🔹 파일 업로드 처리
-            Part nfilePart = request.getPart("nfile");
-            String fileName = (nfilePart != null && nfilePart.getSize() > 0) ? nfilePart.getSubmittedFileName() : null;
+			if (filesize == 0) { // 첨부파일 없는 경우
+				sql = "INSERT INTO notice (ncheck, nsubject, writer, ntext, nview, ndate) "
+					+ "VALUES ( ?, ?, ?, ?, 0, NOW())";
 
-            // 🔹 콘솔 출력 (서버에서 값 확인)
-            System.out.println("📩 [공지사항 데이터 수신]");
-            System.out.println("공지 여부: " + ncheck);
-            System.out.println("제목: " + nsubject);
-            System.out.println("작성자: " + writer);
-            System.out.println("내용: " + ntext);
-            System.out.println("첨부 파일: " + (fileName != null ? fileName : "첨부 파일 없음"));
+				this.ps = this.con.prepareStatement(sql);
+				this.ps.setString(1, ncheck);
+				this.ps.setString(2, nsubject);
+				this.ps.setString(3, writer);
+				this.ps.setString(4, ntext);
 
-            // 🔹 SQL 실행
-            String sql;
-            int result;
+				result = this.ps.executeUpdate(); // DB 저장
 
-            if (fileName == null) {
-                sql = "INSERT INTO notice (ncheck, nsubject, writer, ntext, nview, ndate) VALUES (?, ?, ?, ?, 0, NOW())";
-                ps = con.prepareStatement(sql);
-                ps.setString(1, ncheck);
-                ps.setString(2, nsubject);
-                ps.setString(3, writer);
-                ps.setString(4, ntext);
-            } else {
-                sql = "INSERT INTO notice (ncheck, nsubject, writer, nfile, ntext, nview, ndate) VALUES (?, ?, ?, ?, ?, 0, NOW())";
-                ps = con.prepareStatement(sql);
-                ps.setString(1, ncheck);
-                ps.setString(2, nsubject);
-                ps.setString(3, writer);
-                ps.setString(4, fileName);
-                ps.setString(5, ntext);
-            }
-
-            result = ps.executeUpdate();
-
-            // 🔹 결과 응답
-            if (result > 0) {
-                pw.write("<script>"
-                        + "alert('게시물이 올바르게 등록되었습니다.');"
-                        + "location.href = './notice_list.jsp';"
-                        + "</script>");
-            } else {
-                pw.write("<script>"
-                        + "alert('공지사항 등록 중 오류가 발생했습니다.');"
-                        + "history.go(-1);"
-                        + "</script>");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            pw.write("<script>"
-                    + "alert('데이터베이스 오류로 저장되지 않았습니다.');"
-                    + "history.go(-1);"
-                    + "</script>");
-        } finally {
-            try {
-                if (ps != null) ps.close();
-                if (con != null) con.close();
-                if (pw != null) pw.close();
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
-        }
-    }
+				if (result > 0) {
+					this.pw.write("<script>"
+						+ "alert('게시물이 올바르게 등록되었습니다.');"
+						+ "location.href = './notice_list.jsp';"
+						+ "</script>");
+				}
+			} else { // 첨부파일 있는 경우
+				m_notice nt = new m_notice(nfile,ncheck,nsubject,writer,ntext,request);
+				String msg = nt.msg;
+				
+				if(msg.equals("ok")) {
+					this.pw.write("<script>"
+							+ "alert('올바르게 공지사항이 등록되었습니다.');"
+							+ "location.href = './notice_list.jsp';"
+							+ "</script>");
+				}else {
+					this.pw.write("<script>"
+							+ "alert('데이터베이스 및 첨부파일 오류 발생');"
+							+ "history.go(-1);"
+							+ "</script>");
+				}
+			}
+		} catch (Exception e) {
+			this.pw.write("<script>"
+				+ "alert('데이터베이스 문제로 인하여 저장되지 않았습니다.');"
+				+ "history.go(-1);"
+				+ "</script>");
+		}
+	}
 }

@@ -1,52 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
-  <display-name>admin</display-name>
-  
-  	<servlet>
-	<servlet-name>idcheck</servlet-name>
-	<servlet-class>admin.idcheck</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	<servlet-name>idcheck</servlet-name>
-	<url-pattern>/idcheck.do</url-pattern>	
-	</servlet-mapping>
-	
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="https://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<display-name>admin</display-name>
+
 	<servlet>
-	<servlet-name>add_master_ok</servlet-name>
-	<servlet-class>admin.add_master_ok</servlet-class>
+		<servlet-name>idcheck</servlet-name>
+		<servlet-class>admin.idcheck</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	<servlet-name>add_master_ok</servlet-name>
-	<url-pattern>/add_master_ok.do</url-pattern>	
+		<servlet-name>idcheck</servlet-name>
+		<url-pattern>/idcheck.do</url-pattern>
 	</servlet-mapping>
-	
-	
+
 	<servlet>
-	<servlet-name>notice_writeok</servlet-name>
-	<servlet-class>admin.notice_writeok</servlet-class>
+		<servlet-name>add_master_ok</servlet-name>
+		<servlet-class>admin.add_master_ok</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	<servlet-name>notice_writeok</servlet-name>
-	<url-pattern>/notice_writeok.do</url-pattern>	
+		<servlet-name>add_master_ok</servlet-name>
+		<url-pattern>/add_master_ok.do</url-pattern>
 	</servlet-mapping>
-	
-  
+
 	<servlet>
-	<servlet-name>index_ok</servlet-name>
-	<servlet-class>admin.index_ok</servlet-class>
+		<servlet-name>notice_writeok</servlet-name>
+		<servlet-class>admin.notice_writeok</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	<servlet-name>index_ok</servlet-name>
-	<url-pattern>/index_ok.do</url-pattern>	
+		<servlet-name>notice_writeok</servlet-name>
+		<url-pattern>/notice_writeok.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	<servlet-name>findok_id</servlet-name>
-	<servlet-class>admin.findok_id</servlet-class>
+		<servlet-name>notice_list</servlet-name>
+		<servlet-class>admin.notice_list</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	<servlet-name>findok_id</servlet-name>
-	<url-pattern>/findok_id.do</url-pattern>	
+		<servlet-name>notice_list</servlet-name>
+		<url-pattern>/notice_list.do</url-pattern>
 	</servlet-mapping>
-  
+
+	<servlet>
+		<servlet-name>index_ok</servlet-name>
+		<servlet-class>admin.index_ok</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>index_ok</servlet-name>
+		<url-pattern>/index_ok.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>findok_id</servlet-name>
+		<servlet-class>admin.findok_id</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>findok_id</servlet-name>
+		<url-pattern>/findok_id.do</url-pattern>
+	</servlet-mapping>
+
 </web-app>
