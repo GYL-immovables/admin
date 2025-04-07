@@ -40,14 +40,23 @@
 		<servlet-name>notice_list</servlet-name>
 		<url-pattern>/notice_list.do</url-pattern>
 	</servlet-mapping>
-	
-		<servlet>
+
+	<servlet>
 		<servlet-name>notice_view</servlet-name>
 		<servlet-class>admin.notice_view</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>notice_view</servlet-name>
 		<url-pattern>/notice_view.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>notice_del</servlet-name>
+		<servlet-class>admin.notice_del</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>notice_del</servlet-name>
+		<url-pattern>/notice_del.do</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

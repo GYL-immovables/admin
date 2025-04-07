@@ -8,6 +8,7 @@ if (views != null && views.size() > 5) {
     filename = views.get(5);
 }
 %>
+<script src="./notice_view.js"></script>
 <main class="maincss">
 <section>
     <p>공지사항 확인 페이지</p>
@@ -51,9 +52,12 @@ if (views != null && views.size() > 5) {
 </ul>
 </div>
 <div class="board_btn">
-    <button class="border_del">공지목록</button>
-    <button class="border_add">공지수정</button>
-    <button class="border_modify" style="margin-left: 8px;">공지삭제</button>
+    <button class="border_del" onclick="notice_info(1)">공지목록</button>
+    <button class="border_add" onclick="notice_info(2)">공지수정</button>
+    <button class="border_modify" style="margin-left: 8px;" onclick="notice_info(3)">공지삭제</button>
 </div>
 </section>
 </main>
+<form id="deleteForm" method="post" action="./notice_del.do">
+    <input type="hidden" name="nidx" value="<%= request.getParameter("nidx") %>">
+</form>
