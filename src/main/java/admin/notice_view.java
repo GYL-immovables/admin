@@ -28,7 +28,7 @@ public class notice_view extends HttpServlet {
 
 		// Model: 조회수 증가 및 데이터 조회
 		m_noticeview mv = new m_noticeview();
-		ArrayList<String> notice_v = mv.view(nidx);  // ✅ view() 메서드 사용
+		ArrayList<String> notice_v = mv.view(nidx);
 
 		// JSP로 전달할 데이터 셋팅
 		request.setAttribute("notice_v", notice_v);
