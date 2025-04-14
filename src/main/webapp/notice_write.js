@@ -20,3 +20,9 @@ function file_send() {
     	frm.submit();
 	}
 }
+
+function goNoticeList() {
+	if (confirm("공지등록을 취소 하시겠습니까?")) {
+		location.href = './notice_list.do';
+	}
+}

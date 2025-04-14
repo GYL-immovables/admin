@@ -30,6 +30,7 @@ public class m_notice extends HttpServlet {
 		long filesize = nfile.getSize(); // 파일 용량
 		String filenm = nfile.getSubmittedFileName(); // 파일명
 		String url = request.getServletContext().getRealPath("/notice_file/"); // 파일 저장 경로
+		System.out.println(url);
 		try {
 			nfile.write(url + filenm); // 웹에 저장
 			this.fileok(filenm); // 정상적으로 저장되었을 경우
@@ -65,7 +66,7 @@ public class m_notice extends HttpServlet {
 					this.msg = "error";
 				}
 			} catch (Exception e) {
-				this.msg = "error";
+				this.msg = "error + e";
 			}
 			finally {
 				this.ps.close();
