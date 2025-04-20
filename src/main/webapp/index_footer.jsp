@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 
 <%
-    ArrayList<dto_setting> copyright = (ArrayList<dto_setting>) request.getAttribute("copyright");
+    ArrayList<dto_setting> copyright = (ArrayList<dto_setting>)request.getAttribute("copyright");
 
     if (copyright != null && !copyright.equals(null)) {
         dto_setting data = copyright.get(0); // 첫 번째 객체를 가져옴
