@@ -87,7 +87,7 @@ public class admin_siteinfo extends HttpServlet {
         request.setAttribute("copyright", copyright);
         
         // 7. JSP로 데이터 전달
-        request.setAttribute("copyright", copyright);
+        getServletContext().setAttribute("copyright", copyright);
         request.setAttribute("title", db_ti);
 
         // 8️. 페이지 이동

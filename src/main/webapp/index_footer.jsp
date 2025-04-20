@@ -4,9 +4,10 @@
     pageEncoding="UTF-8"%>
 
 <%
-    ArrayList<dto_setting> copyright = (ArrayList<dto_setting>)request.getAttribute("copyright");
+    ArrayList<dto_setting> copyright =
+        (ArrayList<dto_setting>) application.getAttribute("copyright");
 
-    if (copyright != null && !copyright.equals(null)) {
+    if (copyright != null && !copyright.isEmpty()) {
         dto_setting data = copyright.get(0); // 첫 번째 객체를 가져옴
 %>
 <footer class="main_copyright">
@@ -20,6 +21,7 @@
         주소 : <%= data.getCom_addr() %> |
         정보관리책임자 : <%= data.getInfo_nm() %> |
         책임자이메일 : <%= data.getInfo_email() %>
+        <br>
         Copyright ⓒ 2024 <%= data.getComp_nm() %> |
         All rights reserved.
     </div>

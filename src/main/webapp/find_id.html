@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>아이디 찾기</title>
+</head>
+<body>
+	<form id="frm" method="post" action="./findok_id.do"
+		onsubmit="return find_id()">
+		<p>아이디 찾기</p>
+
+		<input type="text" name="aname" placeholder="담당자 이름을 입력하세요"><br>
+		<input type="text" name="atel" maxlength="11"
+			placeholder="연락처를 - 없이 입력하세요"><br> <input type="text"
+			name="aemail" placeholder="담당자 이메일을 입력하세요"><br>
+
+
+		</div>
+		<input type="submit" value="아이디 찾기">
+	</form>
+</body>
+<script>
+	function find_id() {
+		if (frm.aname.value == "") {
+			alert("담당자 이름을 입력하세요");
+			frm.aname.focus();
+			return false;
+		} else if (frm.atel.value == "") {
+			alert("연락처를 - 없이 입력하세요");
+			frm.atel.focus();
+			return false;
+		} else if (frm.aemail.value == "") {
+			alert("담당자 이메일을 입력하세요");
+			frm.aemail.focus();
+			return false;
+		} else {
+			return true;
+		}
+	}
+</script>
+
+</html>
