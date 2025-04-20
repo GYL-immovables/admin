@@ -6,9 +6,9 @@
 	String title = (String) request.getAttribute("title");
 
 	// title이 null이면 기본값 설정
-	if (title == null || title.equals("")) {
-	    out.print("<script>alert('제목값이 적용되지 않았습니다.'); history.go(-1); </script>");
-	}
+	//if (title == null || title.equals("")) {
+	 //   out.print("<script>alert('제목값이 적용되지 않았습니다.'); history.go(-1); </script>");
+	//}
 %>  
 
 <!DOCTYPE html>
