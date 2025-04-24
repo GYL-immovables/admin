@@ -1,3 +1,4 @@
+
 package admin;
 
 import java.sql.Connection;
@@ -23,3 +24,4 @@ public class m_dbinfo {
       return con;
    }
 }
+

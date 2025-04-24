@@ -1,3 +1,13 @@
+function update_master_btn(){
+	document.getElementById("idck").value = "ok";
+	frm.isupdate.value = "Y";
+	this.add_master_btn();
+}
+function update_cancel_master_btn(){
+	frm.isupdate.value = "Y";
+	this.cancel_master_btn();
+}
+
 function add_master_btn() {
 	if (frm.aid.value == "") {
 		alert("관리자 아이디를 입력하세요");
@@ -41,9 +51,13 @@ function add_master_btn() {
 	}
 }
 
-//취소 => 어디로가나
+//취소 => 로그인화면으로
 function cancel_master_btn() {
-
+	if(frm.isupdate.value == "N"){	//등록일때 로그인으로 
+		location.href="./index.jsp";
+	}else{	//수정일때 관리자리스트로 
+		location.href="./admin_list.do";
+	}
 }
 
 

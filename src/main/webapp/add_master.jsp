@@ -1,5 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+HttpSession hs = request.getSession();
+
+String aid = (hs.getAttribute("aid") != null) ? hs.getAttribute("aid").toString() : "";
+String aname = (hs.getAttribute("aname") != null) ? hs.getAttribute("aname").toString() : "";
+String aemail = (hs.getAttribute("aemail") != null) ? hs.getAttribute("aemail").toString() : "";
+
+//String aid = (String)hs.getAttribute("aid");		//아이디 
+//String aname = (String)hs.getAttribute("aname");	//이름 
+//String aemail = (String)hs.getAttribute("aemail");	//이메일 
+String atel = (String)hs.getAttribute("atel");		//연락처 
+String dept = (String)hs.getAttribute("dept");		//부서 
+String aprv = (String)hs.getAttribute("aprv");		//직책
+String rspofc = (String)hs.getAttribute("rspofc");	//가입승인 
+String adate = (String)hs.getAttribute("adate");	//가입날짜
+%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>

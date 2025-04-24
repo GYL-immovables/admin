@@ -94,4 +94,3 @@ public class notice_writeok extends HttpServlet {
 		}
 	}
 }
-
