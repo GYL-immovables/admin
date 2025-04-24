@@ -1,14 +1,24 @@
 <%@page import="admin.dto_setting"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="admin.m_copyright"%> <%-- 여기에 추가 --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
+    // application 범위에서 값이 없으면 DB에서 강제로 가져옴
     ArrayList<dto_setting> copyright =
         (ArrayList<dto_setting>) application.getAttribute("copyright");
 
+    if (copyright == null || copyright.isEmpty()) {
+        // 강제로 DB에서 조회해서 application에 저장
+        m_copyright cp = new m_copyright();
+        copyright = cp.cpdata();
+        if (!copyright.isEmpty()) {
+            application.setAttribute("copyright", copyright);
+        }
+    }
+
     if (copyright != null && !copyright.isEmpty()) {
-        dto_setting data = copyright.get(0); // 첫 번째 객체를 가져옴
+        dto_setting data = copyright.get(0);
 %>
 <footer class="main_copyright">
     <div>
