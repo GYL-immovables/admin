@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-
 package admin;
-
-=======
-package admin;
->>>>>>> origin/main
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -100,8 +94,3 @@ public class notice_writeok extends HttpServlet {
 		}
 	}
 }
-<<<<<<< HEAD
-
-=======
-
->>>>>>> origin/main

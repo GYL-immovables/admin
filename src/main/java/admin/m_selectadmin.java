@@ -65,7 +65,6 @@ public class m_selectadmin {
 			
 			this.admindata = new ArrayList<String>();
 			if (this.rs.next()) {  //next() 호출 후 데이터 읽기
-<<<<<<< HEAD
 				//0아이디 1이름 2이메일 3전화번호 4부서 5직책 6가입승인 7가입날짜
 				this.admindata.add(this.rs.getString("aid"));		//0아이디 
 				this.admindata.add(this.rs.getString("aname"));		//1이름 
@@ -75,16 +74,6 @@ public class m_selectadmin {
 				this.admindata.add(this.rs.getString("rspofc"));	//5직책
 				this.admindata.add(this.rs.getString("aprv"));		//6가입승인  
 				this.admindata.add(this.rs.getString("adate"));		//7가입날짜 
-=======
-				this.admindata.add(this.rs.getString("aid"));
-				this.admindata.add(this.rs.getString("aname"));
-				this.admindata.add(this.rs.getString("aemail"));
-				this.admindata.add(this.rs.getString("atel"));
-				this.admindata.add(this.rs.getString("dept"));
-				this.admindata.add(this.rs.getString("aprv"));
-				this.admindata.add(this.rs.getString("rspofc"));
-				this.admindata.add(this.rs.getString("adate"));
->>>>>>> origin/main
 			} 
 		} catch (Exception e) {
 			System.out.println("db select error");
