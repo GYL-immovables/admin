@@ -32,10 +32,20 @@ public class findok_id extends HttpServlet {
 			            + "</script>");
 			}else {
 				request.setAttribute("aid", aid);
+			System.out.println(aid);
+			
+			if (aid == null) {
+			    this.pw.write("<script>" 
+			            + "alert('해당되는 아이디가 없습니다.');" 
+			            + "history.go(-1);" 
+			            + "</script>");
+			}else {
+				
 
 				RequestDispatcher rd = request.getRequestDispatcher("./findok_id.jsp");
 				rd.forward(request, response);
 			}
+		}
 		}catch (Exception e) {
 			this.pw.write("<script>" 
 					+ "alert('findok_id error');" 

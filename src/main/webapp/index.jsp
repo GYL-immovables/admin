@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
-    <link rel="stylesheet" type="text/css" href="./css/basic.css">
-    <link rel="stylesheet" type="text/css" href="./css/mainlogin.css?v=3">
+    <link rel="stylesheet" type="text/css" href="./css/basic.css?v=2">
+    <link rel="stylesheet" type="text/css" href="./css/mainlogin.css?v=4">
     <link rel="icon" href="./img/logo.png" sizes="128x128">
     <link rel="icon" href="./img/logo.png" sizes="64x64">
     <link rel="icon" href="./img/logo.png" sizes="32x32">
@@ -21,7 +21,7 @@
     <%@include file="./index_view.jsp" %>
     <footer class="admin_copy_login">
         <div>
-           <%--  <%@include file="./index_footer.jsp" %> --%>
+            <%@include file="./index_footer.jsp" %> 
         </div>
     </footer>
 </body>

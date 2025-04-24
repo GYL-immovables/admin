@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class index_ok extends HttpServlet {
-	
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	PrintWriter pw = null;
 	ArrayList<String> admindata = null;
 	m_selectadmin sa = new m_selectadmin();

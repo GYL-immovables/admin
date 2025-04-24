@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 
 package admin;
 
+=======
+package admin;
+>>>>>>> origin/main
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,100 +19,89 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 @MultipartConfig(
-    fileSizeThreshold = 1024 * 1024 * 5,
-    maxFileSize = 1024 * 1024 * 50,
-    maxRequestSize = 1024 * 1024 * 100
+	fileSizeThreshold = 1024 * 1024 * 5,   // 파일 하나 5MB
+	maxFileSize = 1024 * 1024 * 50,        // 파일들의 총 용량 50MB
+	maxRequestSize = 1024 * 1024 * 500     // 파일 여러개일 때 총 용량 제한
 )
 public class notice_writeok extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    PrintWriter pw = null;
+	private static final long serialVersionUID = 1L;
+	Connection con = null;
+	PreparedStatement ps = null;
+	PrintWriter pw = null;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Access-Control-Allow-Credentials", "true");
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html; charset=UTF-8");
-        this.pw = response.getWriter();
+	// Model
+	m_dbinfo db = new m_dbinfo(); // DB 접속 정보
 
-        Connection con = null;
-        PreparedStatement ps = null;
-        m_dbinfo db = new m_dbinfo(); // DB 접속 정보
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		this.pw = response.getWriter();
 
-        // 🔹 텍스트 데이터 받기
-        //String aid = request.getParameter("aid");  // 관리자 ID
-        String aid = "adminid2";
-        String ncheck = request.getParameter("ncheck");  // 공지사항 여부 (Y/N)
-        String nsubject = request.getParameter("nsubject");  // 제목
-        String writer = request.getParameter("writer");  // 글쓴이
-        String ntext = request.getParameter("ntext");  // 게시글 내용
+		// 첨부파일 유무에 따라 SQL 방식 결정
+		Part nfile = request.getPart("nfile");
+		long filesize = nfile.getSize(); // getSize()는 long값 return
 
-        // 작성자 값이 없으면 "관리자"로 설정
-        if (writer == null || writer.trim().isEmpty()) {
-            writer = "관리자";
-        }
+		try {
+			this.con = this.db.dbinfo(); // DB 연결
 
-        // 🔹 파일 데이터 받기
-        Part nfile = request.getPart("nfile");
-        String fileName = (nfile != null && nfile.getSize() > 0) ? nfile.getSubmittedFileName() : null;
-
-        // 🔹 콘솔 출력 (서버에서 값 확인)
-        System.out.println("📩 [공지사항 데이터 수신]");
-        System.out.println("관리자 ID: " + aid);
-        System.out.println("공지 여부: " + ncheck);
-        System.out.println("제목: " + nsubject);
-        System.out.println("작성자: " + writer);
-        System.out.println("내용: " + ntext);
-        System.out.println("첨부 파일: " + (fileName != null ? fileName : "첨부 파일 없음"));
-
-        try {
-            con = db.dbinfo(); // DB 연결
-            String sql;
-            int result;
-
-            if (fileName == null) {
-                // 🔹 첨부 파일이 없는 경우
-                sql = "INSERT INTO notice (aid, ncheck, nsubject, writer, ntext, nview, ndate) VALUES (?, ?, ?, ?, ?, 0, NOW())";
-                ps = con.prepareStatement(sql);
-                ps.setString(1, aid);
-                ps.setString(2, ncheck);
-                ps.setString(3, nsubject);
-                ps.setString(4, writer);
-                ps.setString(5, ntext);
-            } else {
-                // 🔹 첨부 파일이 있는 경우
-                sql = "INSERT INTO notice (aid, ncheck, nsubject, writer, nfile, ntext, nview, ndate) VALUES (?, ?, ?, ?, ?, ?, 0, NOW())";
-                ps = con.prepareStatement(sql);
-                ps.setString(1, aid);
-                ps.setString(2, ncheck);
-                ps.setString(3, nsubject);
-                ps.setString(4, writer);
-                ps.setString(5, fileName);
-                ps.setString(6, ntext);
-                
-                
-            }
-
-            result = ps.executeUpdate();
-
-            if (result > 0) {
-                pw.print("공지사항 저장 완료");
-            } else {
-                pw.print("공지사항 저장 실패");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            pw.print("데이터베이스 오류 발생");
-        } finally {
-        	try {
-        		ps.close();
-                con.close();
-			} catch (Exception e) {
-				
+			String ncheck = request.getParameter("ncheck");
+			if (ncheck == null) {
+			    ncheck = "N"; // 기본값으로 '공지 아님'
 			}
-            
-        }
-    }
-}
+			String nsubject = request.getParameter("nsubject"); // 제목
+			String writer = request.getParameter("writer");     // 작성자
+			String ntext = request.getParameter("ntext");       // 내용
 
+			String sql = "";     // SQL 문
+			int result = 0;      // insert 결과
+
+			if (filesize == 0) { // 첨부파일 없는 경우
+				sql = "INSERT INTO notice (ncheck, nsubject, writer, ntext, nview, ndate) "
+					+ "VALUES ( ?, ?, ?, ?, 0, NOW())";
+
+				this.ps = this.con.prepareStatement(sql);
+				this.ps.setString(1, ncheck);
+				this.ps.setString(2, nsubject);
+				this.ps.setString(3, writer);
+				this.ps.setString(4, ntext);
+
+				result = this.ps.executeUpdate(); // DB 저장
+
+				if (result > 0) {
+					this.pw.write("<script>"
+						+ "alert('게시물이 올바르게 등록되었습니다.');"
+						+ "location.href = './notice_list.do';"
+						+ "</script>");
+				}
+			} else { // 첨부파일 있는 경우
+				m_notice nt = new m_notice(nfile,ncheck,nsubject,writer,ntext,request);
+				String msg = nt.msg;
+				
+				if(msg.equals("ok")) {
+					this.pw.write("<script>"
+							+ "alert('올바르게 공지사항이 등록되었습니다.');"
+							+ "location.href = './notice_list.do';"
+							+ "</script>");
+				}else {
+					this.pw.write("<script>"
+							+ "alert('데이터베이스 및 첨부파일 오류 발생');"
+							+ "history.go(-1);"
+							+ "</script>");
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			this.pw.write("<script>"
+				+ "alert('데이터베이스 문제로 인하여 저장되지 않았습니다.');"
+				+ "history.go(-1);"
+				+ "</script>");
+		}
+	}
+}
+<<<<<<< HEAD
+
+=======
+
+>>>>>>> origin/main

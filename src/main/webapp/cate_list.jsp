@@ -22,7 +22,7 @@
 	<!-- 상단 로고 & 메뉴 -->
 	<%@include file="./cate_list_view.jsp" %>
 	<!-- 카피라이터 및 하단 -->
-	<%@include file="./footer.jsp" %>
+	<%@include file="./index_footer.jsp" %>
 	<!-- 카피라이터 및 하단 -->
 </body>
 </html>

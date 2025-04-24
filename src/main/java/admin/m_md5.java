@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 package admin;
 
 import java.security.MessageDigest;
@@ -20,5 +23,9 @@ public class m_md5 {
 
 		return md5_data;
 	}
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> origin/main

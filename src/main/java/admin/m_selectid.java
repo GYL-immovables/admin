@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 package admin;
 
 import java.sql.Connection;
@@ -42,5 +45,9 @@ public class m_selectid {
 		}
 		return this.aid;
 	}
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> origin/main
