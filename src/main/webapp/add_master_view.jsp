@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%--
+
+String aid = (session.getAttribute("aid") != null) ? session.getAttribute("aid").toString() : "";
+String aname = (session.getAttribute("aname") != null) ? session.getAttribute("aname").toString() : "";
+String aemail = (session.getAttribute("aemail") != null) ? session.getAttribute("aemail").toString() : "";
+
+--%>
+
 <script src="./add_master_view.js?v=5"></script>
 <div class="admin_login_add">
 	<form id="frm" method="post" action="./add_master_ok.do">
@@ -11,7 +19,7 @@
 		<ul>
 			<li class="font_color1">아이디 및 패스워드 정보</li>
 			<%
-			if(aid.equals(null)){
+			if(aid.trim().equals("")){
 				%>
 			<li><input type="text" name="aid" class="add_input1"
 				placeholder="생성할 관리자 아이디를 입력하세요">
@@ -62,13 +70,13 @@
 					<option value="사원">사원</option>
 			</select></li>
 			<%
-			if(aid.equals(null)){
+			if(aid.trim().equals("")){
 				%>
 			<li class="font_color1">※ 가입완료 후 전산 담당자가 확인 후 로그인 할 수 있습니다.</li>
 			<% } %>
 		</ul>
 		<%
-		if(aid.equals(null)){
+		if(aid.trim().equals("")){
 		%>
 		<span class="admin_addbtn">
 			<button type="button" class="btn_button btncolor1" title="관리자 등록"
